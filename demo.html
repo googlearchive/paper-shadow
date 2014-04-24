@@ -147,58 +147,82 @@ license that can be found in the LICENSE file.
   <br>
   <br>
 
-  <section>
-    <polymer-element name="x-fab" attributes="z" on-tap="{{tapAction}}">
-      <template>
-        <style>
-          :host,
-          .paper-shadow-bottom {
-            display: block;
-            width: 48px;
-            height: 48px;
-            border-radius: 24px;
-            background: white;
-            color: #ccc;
-          }
-        </style>
-        <paper-shadow target="{{}}" z="{{z}}" animated></paper-shadow>
-      </template>
-      <script>
-        Polymer('x-fab', {
-          publish: {
-            z: {value: 1, reflect: true}
-          },
-          up: true,
-          zChanged: function() {
-            this.fire('fab-z-changed');
-          },
-          tapAction: function() {
-            if (this.up) {
-              if (this.z < 5) {
-                this.z += 1;
-              } else {
-                this.z -= 1;
-                this.up = false;
-              }
-            } else {
-              if (this.z > 1) {
-                this.z -= 1;
-              } else {
-                this.z += 1;
-                this.up = true;
-              }
-            }
-          }
-        });
-      </script>
-    </polymer-element>
-    <div>
+  <polymer-element name="x-shadow" attributes="z" on-tap="{{tapAction}}">
+    <template>
       <style>
-        x-fab {
-          margin: 48px 126px;
+        :host,
+        .paper-shadow-bottom {
+          display: block;
+          background: white;
+          color: #ccc;
+        }
+
+        :host(.fab),
+        :host(.fab) .paper-shadow-bottom {
+          width: 48px;
+          height: 48px;
+          border-radius: 24px;
         }
       </style>
-      <x-fab id="fab" z="1"></x-fab>
+      <paper-shadow target="{{}}" z="{{z}}" animated></paper-shadow>
+    </template>
+    <script>
+      Polymer('x-shadow', {
+        publish: {
+          z: {value: 1, reflect: true}
+        },
+        up: true,
+        zChanged: function() {
+          this.fire('shadow-z-changed');
+        },
+        tapAction: function() {
+          if (this.up) {
+            if (this.z < 5) {
+              this.z += 1;
+            } else {
+              this.z -= 1;
+              this.up = false;
+            }
+          } else {
+            if (this.z > 1) {
+              this.z -= 1;
+            } else {
+              this.z += 1;
+              this.up = true;
+            }
+          }
+        }
+      });
+    </script>
+  </polymer-element>
+
+  <section>
+    <div>
+      <x-shadow id="card" z="1" class="card"></x-shadow>
+    </div>
+    <aside>
+      Tap to lift/drop the card.
+      <br>
+      Current z-index = <span id="card-z">1</span>
+    </aside>
+    <script>
+      document.addEventListener('polymer-ready', function() {
+        var fab = document.getElementById('card');
+        fab.addEventListener('shadow-z-changed', function() {
+          document.getElementById('card-z').textContent = fab.z;
+        });
+      });
+    </script>
+  </section>
+
+  <section>
+    <div>
+      <style>
+        x-shadow.fab {
+          margin: 48px 142px;
+        }
+      </style>
+      <x-shadow id="fab" z="1" class="fab"></x-shadow>
     </div>
     <aside>
       Tap to lift/drop the button.
@@ -208,7 +232,7 @@ license that can be found in the LICENSE file.
     <script>
       document.addEventListener('polymer-ready', function() {
         var fab = document.getElementById('fab');
-        fab.addEventListener('fab-z-changed', function() {
+        fab.addEventListener('shadow-z-changed', function() {
           document.getElementById('fab-z').textContent = fab.z;
         });
       });
