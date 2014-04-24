@@ -45,6 +45,7 @@ license that can be found in the LICENSE file.
       height: 300px;
       position: relative;
       margin: 16px;
+      border-radius: 2px;
     }
 
     .card-inner {
@@ -53,6 +54,11 @@ license that can be found in the LICENSE file.
       top: 0;
       right: 0;
       bottom: 0;
+      border-radius: 2px;
+    }
+
+    .card /deep/ .paper-shadow-bottom {
+      border-radius: 2px;
     }
 
   </style>
@@ -60,6 +66,16 @@ license that can be found in the LICENSE file.
 <body unresolved>
 
   <paper-shadow></paper-shadow>
+
+  <section>
+    <div>
+      <div class="card">
+      </div>
+    </div>
+    <aside>
+      z-depth = 0
+    </aside>
+  </section>
 
   <section>
     <!-- Example of using paper-shadow to add a shadow to an element -->
@@ -169,7 +185,7 @@ license that can be found in the LICENSE file.
     <script>
       Polymer('x-shadow', {
         publish: {
-          z: {value: 1, reflect: true}
+          z: {value: 0, reflect: true}
         },
         up: true,
         zChanged: function() {
@@ -184,7 +200,7 @@ license that can be found in the LICENSE file.
               this.up = false;
             }
           } else {
-            if (this.z > 1) {
+            if (this.z > 0) {
               this.z -= 1;
             } else {
               this.z += 1;
@@ -198,12 +214,12 @@ license that can be found in the LICENSE file.
 
   <section>
     <div>
-      <x-shadow id="card" z="1" class="card"></x-shadow>
+      <x-shadow id="card" z="0" class="card"></x-shadow>
     </div>
     <aside>
       Tap to lift/drop the card.
       <br>
-      Current z-index = <span id="card-z">1</span>
+      Current z-index = <span id="card-z">0</span>
     </aside>
     <script>
       document.addEventListener('polymer-ready', function() {
@@ -222,12 +238,12 @@ license that can be found in the LICENSE file.
           margin: 48px 142px;
         }
       </style>
-      <x-shadow id="fab" z="1" class="fab"></x-shadow>
+      <x-shadow id="fab" z="0" class="fab"></x-shadow>
     </div>
     <aside>
       Tap to lift/drop the button.
       <br>
-      Current z-index = <span id="fab-z">1</span>
+      Current z-index = <span id="fab-z">0</span>
     </aside>
     <script>
       document.addEventListener('polymer-ready', function() {
