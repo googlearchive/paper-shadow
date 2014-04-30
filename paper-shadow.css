@@ -14,6 +14,7 @@
 
 :host(.paper-shadow-animated.paper-shadow-top),
 .paper-shadow-animated.paper-shadow-top,
+:host(.paper-shadow-animated) .paper-shadow-bottom,
 .paper-shadow-animated .paper-shadow-bottom {
   transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
