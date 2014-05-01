@@ -114,10 +114,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       },
 
-      zChanged: function() {
-        if (this.target) {
-          this.removeShadow(this.target);
-          this.addShadow(this.target);
+      zChanged: function(old) {
+        if (this.target && this.target._paperShadowInner) {
+          this.target.classList.remove('paper-shadow-top-z-' + old);
+          this.target.classList.add('paper-shadow-top-z-' + this.z);
+          this.target._paperShadowInner.classList.remove('paper-shadow-bottom-z-' + old);
+          this.target._paperShadowInner.classList.add('paper-shadow-bottom-z-' + this.z);
         }
       },
 
