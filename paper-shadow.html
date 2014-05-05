@@ -8,42 +8,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <!--
-/**
- * @module Quantum Paper Elements
- */
-/**
- * The `paper-shadow` element is a helper to add shadows to elements.
- *
- * Quantum paper shadows are composed of two shadows on top of each other. We
- * mimic this effect by using two elements on top of each other, each with a
- * different drop shadow. You can either apply the shadow by assigning a target
- * to this element, or by applying the classes directly.
- *
- * Example:
- *
- *   <div id="myCard" class="card"></div>
- *   <paper-shadow id="myShadow" z="1"></div>
- *   myShadow.target = document.getElementById('myCard');  // Assign the target
- *
- *   // Use the class directly
- *   <div class="card paper-shadow-top paper-shadow-top-z-1">
- *     <div class="card-inner" paper-shadow-bottom paper-shadow-bottom-z-1"></div>
- *   </div>
- *
- * If you assign a target to a `paper-shadow` element, it creates a node and inserts
- * it as the first child of the target, or the first child of the target's shadow root
- * if there is one. This node renders the bottom shadow. This implies:
- *
- *   1. If the primary node that drops the shadow has styling that affects its shape,
- *      e.g. border-radius, the same styling must be applied to elements with class
- *      'paper-shadow-bottom'.
- *
- *   2. The target must be overflow: visible because the bottom shadow is rendered
- *      beyond the bounds of its parent. Use a different child element for clipping
- *      if needed.
- *
- * @class paper-shadow
- */
+The `paper-shadow` element is a helper to add shadows to elements.
+Quantum paper shadows are composed of two shadows on top of each other. We
+mimic this effect by using two elements on top of each other, each with a
+different drop shadow. You can either apply the shadow by assigning a target
+to this element, or by applying the classes directly.
+
+Example:
+
+    <div id="myCard" class="card"></div>
+    <paper-shadow id="myShadow" z="1"></div>
+
+    // Assign a target
+    myShadow.target = document.getElementById('myCard');
+
+    // Use the class directly
+    <div class="card paper-shadow-top paper-shadow-top-z-1">
+      <div class="card-inner paper-shadow-bottom paper-shadow-bottom-z-1"></div>
+    </div>
+
+If you assign a target to a `paper-shadow` element, it creates a node and inserts
+it as the first child of the target, or the first child of the target's shadow root
+if there is one. This node renders the bottom shadow. This implies:
+
+  1. If the primary node that drops the shadow has styling that affects its shape,
+     e.g. `border-radius`, the same styling must be applied to elements with class
+     `paper-shadow-bottom`.
+
+  2. The target must be `overflow: visible` because the bottom shadow is rendered
+     beyond the bounds of its parent. Use a different child element for clipping
+     if needed.
+
+@group Quantum Paper Elements
+@class paper-shadow
 -->
 
 <link href="../polymer/polymer.html" rel="import" attributes="target z animated">
@@ -70,7 +67,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         target: {value: null, reflect: true},
 
         /**
-         * The z-depth of this shadow, from 1-5.
+         * The z-depth of this shadow, from 0-5.
          *
          * @attribute z
          * @type number
