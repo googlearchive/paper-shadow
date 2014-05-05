@@ -1,6 +1,5 @@
 :host(.paper-shadow-top),
 .paper-shadow-top {
-  position: relative;
   overflow: visible;
 }
 

@@ -138,6 +138,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           return;
         }
 
+        var computed = getComputedStyle(node);
+        if (computed.position === 'static') {
+          node.style.position = 'relative';
+        }
+
         node.classList.add('paper-shadow-top');
         node.classList.add('paper-shadow-top-z-' + this.z);
 
@@ -164,6 +169,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         for (var z = 1; z <= 5; z++) {
           node.classList.remove('paper-shadow-top-z-' + z);
         }
+        node.style.position = null;
       }
 
     });
