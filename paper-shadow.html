@@ -32,8 +32,8 @@ it as the first child of the target, or the first child of the target's shadow r
 if there is one. This node renders the bottom shadow. This implies:
 
   1. If the primary node that drops the shadow has styling that affects its shape,
-     e.g. `border-radius`, the same styling must be applied to elements with class
-     `paper-shadow-bottom`.
+     the same styling must be applied to elements with class `paper-shadow-bottom`.
+     `border-radius` is a very common property and is inherited automatically.
 
   2. The target must be `overflow: visible` because the bottom shadow is rendered
      beyond the bounds of its parent. Use a different child element for clipping
