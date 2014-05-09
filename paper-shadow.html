@@ -43,7 +43,7 @@ if there is one. This node renders the bottom shadow. This implies:
 @class paper-shadow
 -->
 
-<link href="../polymer/polymer.html" rel="import" attributes="target z animated">
+<link href="../polymer/polymer.html" rel="import" attributes="target z animated hasPosition">
 
 <polymer-element name="paper-shadow">
 
@@ -80,9 +80,20 @@ if there is one. This node renders the bottom shadow. This implies:
          *
          * @attribute animated
          * @type boolean
-         * @default 1
+         * @default false
          */
-        animated: {value: false, reflect: true}
+        animated: {value: false, reflect: true},
+
+        /**
+         * Workaround: getComputedStyle is wrong sometimes so `paper-shadow`
+         * may overwrite the `position` CSS property. Set this property to
+         * true to prevent this.
+         *
+         * @attribute hasPosition
+         * @type boolean
+         * @default false
+         */
+        hasPosition: {value: false}
       },
 
       // NOTE: include template so that styles are loaded, but remove
@@ -135,7 +146,7 @@ if there is one. This node renders the bottom shadow. This implies:
         }
 
         var computed = getComputedStyle(node);
-        if (computed.position === 'static') {
+        if (!this.hasPosition && computed.position === 'static') {
           node.style.position = 'relative';
         }
 
