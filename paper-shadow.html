@@ -150,12 +150,15 @@ root if there is one. This implies:
       },
 
       animatedChanged: function() {
-        if (this.target) {
-          if (this.animated) {
-            this.target.classList.add('paper-shadow-animated');
-          } else {
-            this.target.classList.remove('paper-shadow-animated');
-          }
+        if (this.target && this.target._paperShadow) {
+          var shadow = this.target._paperShadow;
+          ['top', 'bottom'].forEach(function(s) {
+            if (this.animated) {
+              shadow[s].classList.add('paper-shadow-animated');
+            } else {
+              shadow[s].classList.remove('paper-shadow-animated');
+            }
+          }.bind(this));
         }
       },
 
@@ -176,11 +179,16 @@ root if there is one. This implies:
           var inner = (node._paperShadow && node._paperShadow[s]) || document.createElement('div');
           inner.classList.add('paper-shadow');
           inner.classList.add('paper-shadow-' + s + '-z-' + this.z);
+          if (this.animated) {
+            inner.classList.add('paper-shadow-animated');
+          }
+
           if (node.shadowRoot) {
             node.shadowRoot.insertBefore(inner, node.shadowRoot.firstChild);
           } else {
             node.insertBefore(inner, node.firstChild);
           }
+
           node._paperShadow = node._paperShadow || {};
           node._paperShadow[s] = inner;
         }.bind(this));
