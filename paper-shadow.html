@@ -142,9 +142,10 @@ root if there is one. This implies:
 
       zChanged: function(old) {
         if (this.target && this.target._paperShadow) {
+          var shadow = this.target._paperShadow;
           ['top', 'bottom'].forEach(function(s) {
-            this.target.classList.remove('paper-shadow-' + s + '-z-' + old);
-            this.target.classList.add('paper-shadow-' + s + '-z-' + this.z);
+            shadow[s].classList.remove('paper-shadow-' + s + '-z-' + old);
+            shadow[s].classList.add('paper-shadow-' + s + '-z-' + this.z);
           }.bind(this));
         }
       },
