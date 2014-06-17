@@ -124,7 +124,7 @@ root if there is one. This implies:
         if (!this.target) {
           if (!this.parentElement && this.parentNode.host) {
             this.target = this.parentNode.host;
-          } else if (this.parentElement && this.parentElement !== document.body) {
+          } else if (this.parentElement && (window.ShadowDOMPolyfill ? this.parentElement !== wrap(document.body) : this.parentElement !== document.body)) {
             this.target = this.parentElement;
           }
         }
