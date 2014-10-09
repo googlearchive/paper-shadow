@@ -184,7 +184,14 @@ root if there is one. This implies:
         ['top', 'bottom'].forEach(function(s) {
           var inner = (node._paperShadow && node._paperShadow[s]) || document.createElement('div');
           inner.classList.add('paper-shadow');
-          inner.classList.add('paper-shadow-' + s + '-z-' + this.z);
+          
+          // Added if statement to allow for inset shadows
+          if (this.z >= 0) {
+            inner.classList.add('paper-shadow-' + s + '-z-' + this.z);
+          } else if (this.z < 0) {
+            inner.classList.add('paper-shadow-' + s + '-z-' + (-this.z) + '-inset');
+          }
+          
           if (this.animated) {
             inner.classList.add('paper-shadow-animated');
           }
