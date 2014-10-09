@@ -149,6 +149,30 @@ license that can be found in the LICENSE file.
       z-depth = 5
     </aside>
   </section>
+  
+  <section>
+    <!-- Example of using paper-shadow to add a shadow to an element -->
+    <div>
+      <div class="card">
+        <paper-shadow z="-1"></paper-shadow>
+      </div>
+    </div>
+    <aside>
+      z-depth = -1
+    </aside>
+  </section>
+  
+  <section>
+    <!-- Example of using paper-shadow to add a shadow to an element -->
+    <div>
+      <div class="card">
+        <paper-shadow z="-3"></paper-shadow>
+      </div>
+    </div>
+    <aside>
+      z-depth = -3
+    </aside>
+  </section>
 
   <br>
   <br>
@@ -192,7 +216,7 @@ license that can be found in the LICENSE file.
               this.up = false;
             }
           } else {
-            if (this.z > 0) {
+            if (this.z > -5) {
               this.z -= 1;
             } else {
               this.z += 1;
