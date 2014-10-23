@@ -10,35 +10,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>paper-shadow basic tests</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
-  <script src="../../webcomponentsjs/webcomponents.js"></script>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>paper-shadow tests</title>
   <script src="../../web-component-tester/browser.js"></script>
-
-  <link href="../paper-shadow.html" rel="import">
-
-  <style>
-    .card {
-      width: 100px;
-      height: 100px;
-    }
-  </style>
-
 </head>
 <body>
-
-  <paper-shadow id="s1" class="card"></paper-shadow>
-
   <script>
-
-    var s1 = document.getElementById('s1');
-
-    test('default', function() {
-      assert.notEqual(getComputedStyle(s1.$['shadow-top'])['box-shadow'], 'none');
-    });
-
+    WCT.loadSuites([
+      'basic.html'
+    ]);
   </script>
-
 </body>
 </html>
