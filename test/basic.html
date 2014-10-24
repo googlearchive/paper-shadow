@@ -15,6 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script src="../../webcomponentsjs/webcomponents.js"></script>
   <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../polymer-gestures/test/js/fake.js"></script>
 
   <link href="../paper-shadow.html" rel="import">
 
@@ -30,12 +31,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <paper-shadow id="s1" class="card"></paper-shadow>
 
+  <paper-shadow id="s2" class="card">
+    <div id="foo">hi!</div>
+  </paper-shadow>
+
   <script>
 
     var s1 = document.getElementById('s1');
 
+    var fake = new Fake();
+
     test('default', function() {
       assert.notEqual(getComputedStyle(s1.$['shadow-top'])['box-shadow'], 'none');
+    });
+
+    test('shadows are pointer-events: none', function(done) {
+      var foo = document.getElementById('foo');
+      PolymerGestures.addEventListener(document, 'tap', function(e) {
+        assert.strictEqual(e.target, foo);
+        done();
+      });
+      fake.downOnNode(foo, function() {
+        fake.upOnNode(foo);
+      });
     });
 
   </script>

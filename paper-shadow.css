@@ -17,6 +17,7 @@ html /deep/ paper-animated-shadow {
 html /deep/ paper-shadow::shadow #shadow-bottom,
 html /deep/ paper-shadow::shadow #shadow-top {
   border-radius: inherit;
+  pointer-events: none;
 }
 
 html /deep/ paper-shadow::shadow #shadow-bottom[animated],
