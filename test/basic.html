@@ -47,7 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     test('shadows are pointer-events: none', function(done) {
       var foo = document.getElementById('foo');
-      PolymerGestures.addEventListener(document, 'tap', function(e) {
+      PolymerGestures.addEventListener(wrap(document), 'tap', function(e) {
         assert.strictEqual(e.target, foo);
         done();
       });
