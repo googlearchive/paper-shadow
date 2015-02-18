@@ -7,6 +7,7 @@
   },
   "devDependencies": {
     "web-component-tester": "~2.2.3",
-    "font-roboto": "polymer/font-roboto#~0.5.5"
+    "font-roboto": "polymer/font-roboto#~0.5.5",
+    "test-fixture": "polymer/test-fixture"
   }
 }
