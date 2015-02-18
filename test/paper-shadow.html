@@ -18,6 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script src="../../test-fixture/test-fixture-mocha.js"></script>
 
   <link href="../../test-fixture/test-fixture.html" rel="import">
+  <link href="../../layout/layout.html" rel="import">
   <link href="../paper-shadow.html" rel="import">
 
   <style>
@@ -35,6 +36,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </test-fixture>
 
+  <test-fixture id="OccludingShadow">
+    <template>
+      <div class="card">
+        <paper-shadow z="1" class="fit"></paper-shadow>
+        <div class="fit"></div>
+      </div>
+    </template>
+  </test-fixture>
+
   <test-fixture id="ProgressiveShadows">
     <template>
       <paper-shadow z="1"></paper-shadow>
@@ -47,6 +57,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script>
     suite('<paper-shadow>', function() {
+      suite('a paper shadow', function() {
+        var occludingShadow;
+        var occludedDiv;
+
+        setup(function () {
+          var fragment = fixture('OccludingShadow');
+
+          occludingShadow = fragment.querySelector('paper-shadow');
+          occludedDiv = fragment.querySelector('div');
+        });
+
+        // TODO(cdata): Implement this when PolymerGestures is ported to 0.8.
+        test('does not capture pointer events');
+      });
+
       suite('with a non-zero z attribute', function() {
         var style;
         var shadow;
