@@ -26,8 +26,7 @@ Example:
 <link href="../layout/layout.html" rel="import">
 <dom-module id="paper-shadow">
   <style>
-    paper-shadow,
-    paper-animated-shadow {
+    paper-shadow {
       display: block;
       position: relative;
     }
@@ -99,8 +98,9 @@ Example:
     published: {
 
       /**
-       * The z-depth of this shadow, from 0-5. Setting this property
-       * after element creation has no effect. Use `setZ()` instead.
+       * The z-depth of this shadow, from 0-5. Setting to 0 will remove the
+       * shadow, and each increasing number greater than 0 will be "deeper" 
+       * than the last.
        *
        * @attribute z
        * @type number
