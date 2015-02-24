@@ -29,63 +29,44 @@ Example:
     paper-shadow {
       display: block;
       position: relative;
+    }
+
+    paper-shadow #shadow {
+      border-radius: inherit;
       pointer-events: none;
     }
 
-    paper-shadow #shadow-bottom,
-    paper-shadow #shadow-top {
-      border-radius: inherit;
-    }
-
-    paper-shadow #shadow-bottom[animated],
-    paper-shadow #shadow-top[animated] {
+    paper-shadow[animated] #shadow {
       transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    paper-shadow #shadow-top.paper-shadow-z-1 {
-      box-shadow: none;
-    }
-
-    paper-shadow #shadow-bottom.paper-shadow-z-1 {
+    paper-shadow[z="1"] #shadow {
       box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
     }
 
-    paper-shadow #shadow-top.paper-shadow-z-2 {
-      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+
+    paper-shadow[z="2"] #shadow {
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2),
+                  0 6px 10px 0 rgba(0, 0, 0, 0.3);
     }
 
-    paper-shadow #shadow-bottom.paper-shadow-z-2 {
-      box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+    paper-shadow[z="3"] #shadow {
+      box-shadow: 0 11px 7px 0 rgba(0, 0, 0, 0.19),
+                  0 13px 25px 0 rgba(0, 0, 0, 0.3);
     }
 
-    paper-shadow #shadow-top.paper-shadow-z-3 {
-      box-shadow: 0 11px 7px 0 rgba(0, 0, 0, 0.19);
+    paper-shadow[z="4"] #shadow {
+      box-shadow: 0 14px 12px 0 rgba(0, 0, 0, 0.17),
+                  0 20px 40px 0 rgba(0, 0, 0, 0.3);
     }
 
-    paper-shadow #shadow-bottom.paper-shadow-z-3 {
-      box-shadow: 0 13px 25px 0 rgba(0, 0, 0, 0.3);
-    }
-
-    paper-shadow #shadow-top.paper-shadow-z-4 {
-      box-shadow: 0 14px 12px 0 rgba(0, 0, 0, 0.17);
-    }
-
-    paper-shadow #shadow-bottom.paper-shadow-z-4 {
-      box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.3);
-    }
-
-    paper-shadow #shadow-top.paper-shadow-z-5 {
-      box-shadow: 0 17px 17px 0 rgba(0, 0, 0, 0.15);
-    }
-
-    paper-shadow #shadow-bottom.paper-shadow-z-5 {
-      box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3);
+    paper-shadow[z="5"] #shadow {
+      box-shadow: 0 17px 17px 0 rgba(0, 0, 0, 0.15),
+                  0 27px 55px 0 rgba(0, 0, 0, 0.3);
     }
   </style>
   <template>
-
-    <div id="shadow-bottom" animated$="[[animated]]" class$="[[paperShadowClassName]]"></div>
-    <div id="shadow-top" animated$="[[animated]]" class$="[[paperShadowClassName]]"></div>
+    <div id="shadow" class="fit"></div>
 
     <content></content>
 
@@ -99,14 +80,17 @@ Example:
 
       /**
        * The z-depth of this shadow, from 0-5. Setting to 0 will remove the
-       * shadow, and each increasing number greater than 0 will be "deeper" 
+       * shadow, and each increasing number greater than 0 will be "deeper"
        * than the last.
        *
        * @attribute z
        * @type number
        * @default 1
        */
-      z: Number,
+      z: {
+        type: Number,
+        reflect: true
+      },
 
       /**
        * Set this to true to animate the shadow when setting a new
@@ -116,7 +100,10 @@ Example:
        * @type boolean
        * @default false
        */
-      animated: Boolean
+      animated: {
+        type: Boolean,
+        reflect: true
+      }
     },
 
     configure: function() {
@@ -124,14 +111,6 @@ Example:
         z: 1,
         animated: false
       };
-    },
-    
-    computed: {
-      paperShadowClassName: 'computePaperShadowClassName(z)'
-    },
-
-    computePaperShadowClassName: function(z) {
-      return 'fit paper-shadow-z-' + z;
     }
   })
 </script>

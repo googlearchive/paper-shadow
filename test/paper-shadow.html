@@ -78,7 +78,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         setup(function() {
           shadow = fixture('TrivialShadow');
-          style = window.getComputedStyle(shadow.$['shadow-bottom']);
+          style = window.getComputedStyle(shadow.$['shadow']);
         });
 
         test('has a shadow', function() {
@@ -106,7 +106,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           expect(shadows.length).to.be.eql(5);
 
           shadows.forEach(function (shadow) {
-            style = window.getComputedStyle(shadow.$['shadow-bottom']);
+            style = window.getComputedStyle(shadow.$['shadow']);
 
             expect(style.boxShadow).to.be.ok;
             expect(style.boxShadow).to.not.be.eql('none');
