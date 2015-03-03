@@ -3,7 +3,7 @@
   "private": true,
   "dependencies": {
     "polymer": "Polymer/polymer#0.8-preview",
-    "layout": "polymer/layout#class-based-layout"
+    "layout": "polymer/layout#master"
   },
   "devDependencies": {
     "web-component-tester": "~2.2.3",
