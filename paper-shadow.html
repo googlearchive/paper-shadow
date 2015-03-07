@@ -26,41 +26,41 @@ Example:
 <link href="../layout/layout.html" rel="import">
 <dom-module id="paper-shadow">
   <style>
-    paper-shadow {
+    :host {
       display: block;
       position: relative;
     }
 
-    paper-shadow #shadow {
+    :host #shadow {
       border-radius: inherit;
       pointer-events: none;
     }
 
-    paper-shadow[animated] #shadow {
+    :host([animated]) #shadow {
       transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    paper-shadow[z="1"] #shadow {
+    :host([z="1"]) #shadow {
       box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
     }
 
 
-    paper-shadow[z="2"] #shadow {
+    :host([z="2"]) #shadow {
       box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2),
                   0 6px 10px 0 rgba(0, 0, 0, 0.3);
     }
 
-    paper-shadow[z="3"] #shadow {
+    :host([z="3"]) #shadow {
       box-shadow: 0 11px 7px 0 rgba(0, 0, 0, 0.19),
                   0 13px 25px 0 rgba(0, 0, 0, 0.3);
     }
 
-    paper-shadow[z="4"] #shadow {
+    :host([z="4"]) #shadow {
       box-shadow: 0 14px 12px 0 rgba(0, 0, 0, 0.17),
                   0 20px 40px 0 rgba(0, 0, 0, 0.3);
     }
 
-    paper-shadow[z="5"] #shadow {
+    :host([z="5"]) #shadow {
       box-shadow: 0 17px 17px 0 rgba(0, 0, 0, 0.15),
                   0 27px 55px 0 rgba(0, 0, 0, 0.3);
     }
@@ -76,7 +76,7 @@ Example:
   Polymer({
     is: 'paper-shadow',
 
-    published: {
+    properties: {
 
       /**
        * The z-depth of this shadow, from 0-5. Setting to 0 will remove the
@@ -89,7 +89,8 @@ Example:
        */
       z: {
         type: Number,
-        reflect: true
+        reflect: true,
+        value: 1
       },
 
       /**
@@ -102,15 +103,9 @@ Example:
        */
       animated: {
         type: Boolean,
-        reflect: true
+        reflect: true,
+        value: false
       }
     },
-
-    configure: function() {
-      return {
-        z: 1,
-        animated: false
-      };
-    }
   })
 </script>
